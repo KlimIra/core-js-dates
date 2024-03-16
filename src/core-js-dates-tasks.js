@@ -189,11 +189,9 @@ function getCountWeekendsInMonth(month, year) {
  * Date(2024, 1, 23) => 8
  */
 function getWeekNumberByDate(date) {
-  const startOfYear = new Date(date.getFullYear(), 0, 1);
-  const diff = date - startOfYear;
-  const oneDay = 1000 * 60 * 60 * 24;
-  const dayOfYear = Math.floor(diff / oneDay);
-  return Math.ceil((dayOfYear + startOfYear.getDay() + 1) / 7);
+  const oneJan = new Date(date.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((date - oneJan) / 86400000);
+  return Math.ceil((dayOfYear + oneJan.getDay() + 1) / 7);
 }
 
 /**
@@ -223,20 +221,7 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 10, 10) => 4
  */
 function getQuarter(date) {
-  const month = date.getMonth() + 1;
-
-  switch (true) {
-    case month >= 1 && month <= 3:
-      return 1;
-    case month >= 4 && month <= 6:
-      return 2;
-    case month >= 7 && month <= 9:
-      return 3;
-    case month >= 10 && month <= 12:
-      return 4;
-    default:
-      throw new Error('Invalid month in date provided.');
-  }
+  return Math.ceil((date.getMonth() + 1) / 3);
 }
 
 /**
