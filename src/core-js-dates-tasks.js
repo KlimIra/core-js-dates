@@ -141,12 +141,6 @@ function formatDate(date) {
   const dateObj = new Date(date);
   return dateObj.toLocaleString('en-US', {
     timeZone: 'UTC',
-    month: 'numeric',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
     hour12: true,
   });
 }
